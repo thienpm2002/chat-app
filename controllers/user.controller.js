@@ -5,6 +5,12 @@ const { hash, compare} = require('bcryptjs');
 const  {createAccessToken,createRefreshToken,sendAccessToken,sendRefreshToken} = require('../jwt/token.js');
 const { verify } = require('jsonwebtoken');
 
+
+
+
+const registerPage = (req,res) =>{
+    res.render('register');
+}
 // Xử lý đăng ký
 const registerController = async (req,res) => {
 
@@ -19,17 +25,19 @@ const registerController = async (req,res) => {
 
         const [row] = await pool.query('SELECT * FROM users WHERE Email = ?',[email]);
         if(row.length > 0) {
-            return res.send('User is exits.');
+            return res.send('User already exists.');
         }
 
         await pool.query('INSERT INTO users (Name, Email, Password) VALUES (?,?,?)',[name,email,hashedPassword]);
-        res.json({
-            status: 'ok',
-            message: 'User created',
-        })
+        res.redirect('/login');
     } catch (error) {
         res.status(500).json({message: error.message});
     }
+}
+
+
+const loginPage = (req,res) =>{
+    res.render('login');
 }
 // Xử lý login
 const loginController = async (req,res) => {
@@ -54,7 +62,10 @@ const loginController = async (req,res) => {
             await pool.query('UPDATE users SET Refreshtoken = ? WHERE Id = ?', [refreshToken, user.Id]);
 
             sendRefreshToken(res,refreshToken);
-            return sendAccessToken(res,accessToken)
+            sendAccessToken(res,accessToken);
+
+           return res.redirect('/api/home');
+             
         }
 
         res.send('Tai khoan khong ton tai');
@@ -64,35 +75,37 @@ const loginController = async (req,res) => {
     }
 }
 
-const newAccessToken = async (req,res) =>{
-      const token = req.cookies.refreshtoken;
-      if(!token) return res.send({message:'Khong thấý token'});
+// const newAccessToken = async (req,res) =>{
+//       const token = req.cookies.refreshtoken;
+//       if(!token) return res.send({message:'Khong thấý token'});
 
-      const payload = verify(token, process.env.REFRESH_TOKEN);
-      if(!payload)  return res.send({message:'Lỗi giải mã'});
+//       const payload = verify(token, process.env.REFRESH_TOKEN);
+//       if(!payload)  return res.send({message:'Lỗi giải mã'});
       
-      const [row] = await pool.query('SELECT * FROM users WHERE Id = ?',[payload.id]);
-      const [user] = row;
-      if(!user) return res.send({message:'Khong thấý user'});
-      if(user.Refreshtoken !== token)  return res.send({message:'Khong thấý token trong database'});
+//       const [row] = await pool.query('SELECT * FROM users WHERE Id = ?',[payload.id]);
+//       const [user] = row;
+//       if(!user) return res.send({message:'Khong thấý user'});
+//       if(user.Refreshtoken !== token)  return res.send({message:'Khong thấý token trong database'});
       
-      const accessToken = createAccessToken(user.Id);
-      const refreshToken = createRefreshToken(user.Id);
-      await pool.query('UPDATE users SET Refreshtoken = ? WHERE Id = ?', [refreshToken, user.Id]);
+//       const accessToken = createAccessToken(user.Id);
+//       const refreshToken = createRefreshToken(user.Id);
+//       await pool.query('UPDATE users SET Refreshtoken = ? WHERE Id = ?', [refreshToken, user.Id]);
 
-      sendRefreshToken(res,refreshToken);
-      return sendAccessToken(res,accessToken)
-
-}
+//       sendRefreshToken(res,refreshToken);
+//       return sendAccessToken(res,accessToken)
+    
+// }
 
 const logoutController = async (req,res)=>{
-    res.clearCookie('refreshtoken',{ path: '/refresh-token' });
-    res.send('Logout thanh cong');
+    res.clearCookie('refreshtoken',{ path: '/api' });
+    res.clearCookie('accesstoken',{ path: '/api' });
+    res.redirect('/login');
 }
 
 module.exports = {
+    registerPage,
     registerController,
+    loginPage,
     loginController,
-    newAccessToken,
     logoutController
 }

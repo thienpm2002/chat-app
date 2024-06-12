@@ -1,0 +1,100 @@
+
+
+
+<%- include('./partials/header') %>
+
+
+
+<div class="home-conatiner">
+
+     <div class="nav">
+           <div class="user">
+               <img src="/img/user.jpg" class="img">
+               <p class="name">Thien</p>
+           </div>
+           <div class="nav-content">
+                    <a href="/home" class="home">
+                        <i class="fa fa-home" style="font-size:24px;color:black"></i>
+                        <p>HOME</p>
+                    </a>
+   
+   
+                    <a href="/" class="group">
+                        <i class="fa fa-group" style="font-size:24px;color:black"></i></i>
+                        <p>TEAMS</p>
+                    </a>
+
+                    <a href="/">
+                        <i class="fa fa-user-o" style="font-size:24px;color:black"></i>
+                        <p>CONTACT</p>
+                    </a>
+     
+
+                    <a href="/" class="notification">
+                        <i class="fa fa-bell-o" style="font-size:24px;color:black"></i>
+                        <p>NOTIFICATIONS</p>
+                    </a>
+           </div>
+           <div class="wrap-logout">
+            <a href="/" class="logout">
+                <i class="fa fa-power-off" style="font-size:24px;color:black"></i>
+                <p>LOG OUT</p>
+            </a>
+        </div>
+     </div>
+
+     <div class="main-home">
+
+          <div class="contact">
+              <div class="header-contact"><strong>Chats</strong></div>
+              <div class="main-contact">
+                    <div class="search">
+                        <form action=""class='form-contact'>
+                            <input type="text" placeholder="Search user" class="input-contact">
+                            <i class="fa fa-search" style="font-size:16px"></i>
+                        </form>
+                    </div>
+                    <div class="content-contact">
+                        
+                          <div class="wrap">
+                               <img src="/img/user.jpg" class="img-contact">
+                               <div class="chat-content">
+                                    <strong class="name-contact">Thien</strong>
+                                    <p class="message-contact">Làm gì đấy</p>
+                               </div>
+                          </div>
+                    </div>
+              </div>
+          </div>
+
+
+          <div class="chat">
+
+            <div class="header-message">
+                <div class="wrap-header">
+                    <img src="/img/user.jpg" class="img-contact">
+                    <strong>Thien</strong>
+               </div>
+            </div>
+
+            <div class="wrap-message">
+                 <div class="message-content">
+                    <ul>
+                        <li class='message-r'>Làm gì đấy</li>
+                        <li class="message-l">Quay tay</li>
+                    </ul>
+                 </div>
+                 <form action="" class="chat-form">
+                     <input type="text" class="input-chat" placeholder="Type message">
+                     <i class="fa fa-send" style="font-size:24px; color: blue"></i>
+                 </form>
+            </div>
+
+          </div>
+     </div>
+
+</div>
+
+
+
+<%- include('./partials/footer') %>

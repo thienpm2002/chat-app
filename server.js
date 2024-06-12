@@ -9,13 +9,23 @@ const cookieParser = require('cookie-parser');
 const app = express();
 
 // middlewares
-app.use(express.static(path.join(__dirname,'public')));
+app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 app.use(cookieParser());
 
+
+// Set template
+app.set('view engine','ejs');
+app.set('views',path.join(__dirname,'views'));
+
 // Routers
 router(app);
+
+app.get('/',(req,res)=>{
+      res.render('home');
+})
+
 // Set error handler
 app.use((req,res,next)=>{
       next(createError.NotFound('This router does not a exist.'));
@@ -27,13 +37,6 @@ app.use((err,req,res,next)=>{
            message: err.message
        })
 })
-
-
-// Set template
-app.set('view engine','ejs');
-app.set('views',path.join(__dirname,'views'));
-
-
 
 
 

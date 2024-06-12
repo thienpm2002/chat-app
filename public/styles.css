@@ -1,0 +1,362 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+
+body {
+    width: 100%;
+    height: 100%;
+    background-color: #80808036;
+}
+
+
+
+/* -------------------------------- Login ------------------------- */
+
+.container {
+    display: flex;
+    height: 80vh;
+    width: 90vh;
+    margin: 70px auto;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+}
+
+.left {
+    background-color: white;
+    width: 50%;
+    height: 80%;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.left-content {
+    width: 80%;
+    height: 80%;
+    margin: 50px auto;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    justify-content: center;
+}
+h1 {
+    text-align: center;
+    font-size: 50px;
+}
+.input-login {
+    display: block;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    border: none;
+    height: 30px;
+    width: 100%;
+    background-color: rgb(109 188 251 / 36%);
+    padding: 20px;
+    font-size: 20px;
+}
+
+.btn-login {
+    height: 40px;
+    width: 150px;
+    border-radius: 20px;
+    color: white;
+    background-color: orangered;
+    margin: 0 auto;
+    border: none;
+    cursor: pointer;
+    font-weight: bolder;
+}
+
+
+.right {
+    width: 50%;
+    height: 80%;
+    background-color: rgb(241 46 32);
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.right-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 80%;
+    height: 50%;
+    color: white;
+}
+
+p {
+    text-align: center;
+    font-size: 20px;
+}
+
+.btn-register {
+    height: 40px;
+    width: 150px;
+    border-radius: 20px;
+    color: white;
+    background-color: rgb(241 46 32);
+    margin: 0 auto;
+    border: 1px solid white;
+    cursor: pointer;
+    font-weight: bolder;
+}
+
+
+
+
+
+
+
+
+/* -------------------------------- END ------------------------- */
+
+
+/* ------------------------------------Nav------------------------------------- */
+
+.home-conatiner {
+     display: flex;
+     width: 100vw;
+     height:100vh;
+}
+
+.nav {
+    height: 100vh;
+    width: 10vw;
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    justify-content: space-evenly;
+}
+.user {
+    display: flex;
+    flex-direction: column;
+    height: 10%;
+    justify-self: start;
+}
+
+.nav-content {
+     display:flex;
+     flex-direction: column;
+     justify-content: space-evenly;
+     height: 60%;
+     width: 100%;
+     justify-self: center;
+}
+.wrap-logout {
+    height: 5%;
+}
+
+a {
+    display: flex;
+    width: 85%;
+    height: 10%;
+    text-decoration: none;
+    align-items: center;
+    margin: 0 auto;
+}
+
+a p {
+    font-size: 16px;
+    text-align: center;
+    justify-self: center;
+    color: black;
+    margin-left: 20px;
+}
+
+.img {
+    width: 100px;
+    height: 100px;
+    margin: 0 auto;
+    border-radius: 100%;
+}
+
+/* ----------------------- Main-home --------------------------------- */
+
+.main-home{
+    width: 90vw;
+    height: 100vh;
+    display: flex;
+}
+/* --------------------------------------- Contact ------------------------------- */
+.contact {
+    width: 30%;
+    height: 100%;
+}
+
+.header-contact, .header-message {
+    height: 10%;
+    border-bottom: 0.0101px solid black;
+    position: relative;
+}
+
+.header-contact strong {
+     position: absolute;
+     top: 30px;
+     left: 30px;
+     font-size: 24px;
+}
+.main-contact {
+    height: 90%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+.search {
+    display: flex;
+    height: 10%;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+}
+.form-contact {
+    height:50% ;
+    width: 80%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.input-contact {
+     border-radius: 10px;
+     height: 80%;
+     width: 90%;
+     padding: 20px;
+     background-color: #80808036;;
+     border: none;
+     font-size: 20px;
+}
+
+.fa-search {
+    margin-left: -20px;
+    
+}
+
+.img-contact {
+    width: 70px;
+    height: 70px;
+    margin-right: 20px;
+}
+
+.content-contact {
+    height: 80%;
+    overflow-y: auto;
+}
+
+.wrap {
+    background-color: white;
+    width: 90%;
+    height: 20%;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    margin: 0 auto;
+    padding: 10px;
+    margin-bottom: 20px;
+    cursor: pointer;
+}
+.chat-content {
+    display: flex;
+    flex-direction: column;
+}
+
+.name-contact {
+    font-size: 24px;
+}
+
+/* ------------------------------------------ chat ----------------------------*/
+
+
+.chat {
+    width: 70%;
+    background-color: white;
+    height: 100%;
+}
+
+.wrap-header {
+     position: absolute;
+     top: 15px;
+     left: 20px
+}
+.wrap-header strong {
+    font-size: 24px;
+    position: absolute;
+    top: 20px
+}
+.wrap-message {
+    height: 90%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+.message-content {
+    width: 100%;
+    height: 90%;
+    padding: 20px;
+    overflow-y: auto;
+}
+
+.message {
+    background-color: blue;
+    width: 95%;
+    height: 95%;
+}
+
+.chat-form {
+    width: 100%;
+    height: 5%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.input-chat {
+    width: 80%;
+    height: 80%;
+    padding: 20px;
+    font-size: 20px;
+    border-radius: 10px;
+    margin-right: 20px;
+    border: 1px solid;
+}
+
+.fa-send {
+    cursor: pointer;
+}
+
+.message-r {
+    background-color: blue;
+    border-radius: 5px;
+    font-size: 24px;
+    color: white;
+    max-width: 40%;
+    align-self: flex-end;
+    padding: 10px;
+    margin: 10px;
+}
+
+.message-l {
+    background-color: pink;
+    border-radius: 5px;
+    font-size: 24px;
+    color: white;
+    max-width: 40%;
+    align-self: flex-start;
+    padding: 10px;
+    margin: 10px;
+}
+
+ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}

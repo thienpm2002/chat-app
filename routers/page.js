@@ -1,14 +1,14 @@
 const express = require('express');
 const router = express.Router();
-const {isAuth} = require('../jwt/token.js');
+const {isAuth,refreshToken} = require('../jwt/token.js');
 
 
-router.use('/home',isAuth);
+router.use('/api',isAuth,refreshToken);
 
-router.get('/home',(req,res)=>{
-      const Id = req.userId;
-      res.json({Id});
-})
+router.get('/api/home',(req,res)=>{
+      res.render('home');
+ })
+ 
 
 
 module.exports = router;  
