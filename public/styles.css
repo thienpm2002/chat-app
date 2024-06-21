@@ -127,7 +127,10 @@ p {
      display: flex;
      width: 100vw;
      height:100vh;
+     position: relative;
+     
 }
+
 
 .nav {
     height: 100vh;
@@ -140,8 +143,20 @@ p {
 .user {
     display: flex;
     flex-direction: column;
-    height: 10%;
+    height: 15%;
     justify-self: start;
+    cursor: pointer;
+    position: relative;
+    justify-content: space-between;
+}
+
+.user .fa-edit {
+     position: absolute;
+     right:10px;
+     visibility: hidden;
+}
+.user:hover .fa-edit {
+    visibility: visible;
 }
 
 .nav-content {
@@ -154,6 +169,10 @@ p {
 }
 .wrap-logout {
     height: 5%;
+    width: 85%;
+   display: flex;
+   justify-content: space-evenly;
+   cursor: pointer;
 }
 
 a {
@@ -226,7 +245,7 @@ a p {
     align-items: center;
     justify-content: center;
 }
-.input-contact {
+.input-contact, .input-add {
      border-radius: 10px;
      height: 80%;
      width: 90%;
@@ -245,6 +264,7 @@ a p {
     width: 70px;
     height: 70px;
     margin-right: 20px;
+    border-radius: 100%;
 }
 
 .content-contact {
@@ -298,7 +318,7 @@ a p {
     flex-direction: column;
     justify-content: space-around;
 }
-.message-content {
+.message-content, .list-item {
     width: 100%;
     height: 90%;
     padding: 20px;
@@ -360,3 +380,187 @@ ul {
     flex-direction: column;
     justify-content: flex-end;
 }
+
+
+
+/* ------------------------------------------------- Contact --------------------------------------- */
+
+.wrap-appect {
+     display: flex;
+     justify-content: space-between;
+     background-color: white;
+     width: 90%;
+     height: 20%;
+     border-radius: 20px;
+     align-items: center;
+     margin: 0 auto;
+     padding: 10px;
+     margin-bottom: 20px;
+     cursor: pointer;
+}
+
+.accept-content {
+    display: flex;
+    align-items: center;
+}
+
+.btn-accept {
+     background-color: #5f9ea00f;
+     border-radius: 5px;
+     border: none;
+     width: 35%;
+     height: 30px;
+     display: flex;
+     justify-content: space-around;
+     align-items: center;
+     cursor: pointer;
+}
+
+.fa-user-plus {
+    margin-left: -10px;
+}
+
+.btn-accept p {
+    color:gray
+}
+
+.header-list-friend{
+    position: absolute;
+    top:35%;
+    bottom: 40%;
+    left: 50%;
+    right: 50%;
+    font-size: 24px;
+    min-width: 300px; 
+    min-height: 50px;
+
+}
+.form-add {
+    position: absolute;
+    top:40%;
+    bottom: 40%;
+    left: 3%;
+    width: 30%;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.input-add-friend {
+    border: none;
+    background-color: #80808036;
+    width: 100%;
+    height: 100%;
+    padding: 10px;
+    font-size: 20px;
+    border-radius: 5px;
+}
+.btn-search{
+     background-color: white;
+     border: none;
+     cursor: pointer;
+}
+.friend-infor {
+    display: flex;
+    flex-direction: column;
+    background-color: #14fff1;
+    width: 17%;
+    height: 250px;
+    justify-content: space-evenly;
+    align-items: center;
+}
+.img-add {
+    width: 150px;
+    height: 150px;
+    
+}
+
+.btn-add {
+    background-color: blue;
+    color: white;
+    border: none;
+    cursor: pointer;
+    width: 80%;
+    height: 30px; 
+    border-radius: 5px;
+}
+
+.list-item {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+
+
+
+/* ------------------------------------ update ---------------------- */
+
+
+.user-infor {
+     width: 30%;
+     height: 50%;
+     margin: 0 auto;
+     background-color: aqua;
+     border-radius: 20px;
+     padding: 20px;
+     position: absolute;
+     left: 35%;
+     top: 20%;
+     display: flex;
+     flex-direction: column;
+     align-items: center;
+     justify-content: space-evenly;
+     transform: translate(0,-700px);
+     transition: transform 1s ease
+}
+
+.update-form {
+     display: flex;
+     flex-direction: column;
+     justify-content: space-evenly;
+     height: 40%;
+}
+
+.img-update {
+    width: 150px;
+    height: 150px;
+    margin: 0 auto;
+    border-radius: 100%;
+}
+
+label {
+    font-size: 20px;
+}
+
+
+.user-name {
+      height: 24px;
+      padding: 10px;
+      font-size: 18px;
+      border-radius: 5px;
+      border: none;
+      background-color: gainsboro;
+}
+
+.update-user {
+      height: 24px;
+      color: white;
+      background-color: blue;
+      border-radius: 5px;
+      font-size: 18px;
+      border: none;
+      cursor: pointer;
+}
+
+.user-infor .fa-close {
+      position: absolute;
+      cursor: pointer;
+      top: 20px;
+      right: 20px;
+}
+
+.animation-update {
+    transform: translate(0,0);
+}
+
+

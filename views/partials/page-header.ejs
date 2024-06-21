@@ -1,0 +1,50 @@
+<%- include('./header') %>
+
+
+
+<div class="home-conatiner">
+    <div class="user-infor">
+        <i class="fa fa-close" style="font-size:24px"></i>
+        <h2>Update user</h2>
+        <img src="<%=user.Image%>" class="img-update">
+        <form class="update-form" enctype="multipart/form-data">
+             <label for="">Name</label>
+             <input type="text" class="user-name" name="name" value="<%= user.Name%>">
+             <input type="file" class="file" name="img">
+             <button type="button" class="update-user">Update</button>
+        </form>
+    </div>
+     <div class="nav">
+           <div class="user">
+               <i class="fa fa-edit" style="font-size:16px"></i>
+               <img src="<%=user.Image%>" class="img">
+               <p class="name"><%=user.Name%></p>
+           </div>
+           <div class="nav-content">
+                    <a href="/api/home" class="home">
+                        <i class="fa fa-home" style="font-size:24px;color:black"></i>
+                        <p>HOME</p>
+                    </a>
+   
+   
+                    <a href="/" class="group">
+                        <i class="fa fa-group" style="font-size:24px;color:black"></i></i>
+                        <p>TEAMS</p>
+                    </a>
+
+                    <a href="/api/contact">
+                        <i class="fa fa-user-o" style="font-size:24px;color:black"></i>
+                        <p>CONTACT</p>
+                    </a>
+     
+
+                    <a href="/" class="notification">
+                        <i class="fa fa-bell-o" style="font-size:24px;color:black"></i>
+                        <p>NOTIFICATIONS</p>
+                    </a>
+           </div>
+           <div class="wrap-logout">
+                <i class="fa fa-power-off" style="font-size:24px;color:black"></i>
+                <p>LOG OUT</p>
+        </div>
+     </div>

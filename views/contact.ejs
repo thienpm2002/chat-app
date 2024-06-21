@@ -1,0 +1,83 @@
+
+
+
+<%- include('./partials/page-header') %>
+
+
+     <div class="main-home">
+
+          <div class="contact">
+              <div class="header-contact"><strong>List Friends</strong></div>
+              <div class="main-contact">
+                    <div class="search">
+                        <form action=""class='form-contact'>
+                            <input type="text" placeholder="Search user" class="input-add">
+                            <i class="fa fa-search" style="font-size:16px"></i>
+                        </form>
+                    </div>
+                    <div class="content-contact">
+
+                        
+                         <%if(friends.length === 0){%>
+                            <div class="wrap-appect">
+                                <div class="accept-content">
+                                     <strong class="name-contact">Not friend</strong>
+                                </div>
+                            </div>
+                        <%}%>
+                         <%friends.forEach((friend)=>{%>
+                            <div class="wrap-appect">
+                                <div class="accept-content">
+                                     <img src="<%=friend.Image%>" class="img-contact">
+                                     <strong class="name-contact"><%=friend.Name%></strong>
+                                </div>
+                            </div>
+                        <% })%>
+                         
+        
+
+                    </div>
+              </div>
+          </div>
+
+
+          <div class="chat">
+
+            <div class="header-message">
+                    <h3 class="header-list-friend">People you may know</h3>
+            </div>
+
+            <div class="wrap-message">
+                 <div class="list-item">
+                    <%if(pendings.length > 0 && typeof pendings !== 'undefined'){%>
+
+                        <%pendings.forEach((pending)=>{
+                            if(pending.user_2 === user.Id){%>
+                                <div class='friend-infor' id="friend-<%=pending.Id%>">
+                                    <img src="<%=pending.Image%>" class="img-add">
+                                    <strong class="name-contact"><%=pending.Name%></strong>
+                                    <button class="add" id="add-<%=pending.Id%>">Chap nhan</button>
+                                    <button class="reject" id="reject-<%=pending.Id%>">Tu choi</button>
+                                </div>
+                            <% }else{%>
+                                <div class='friend-infor' id="friend-<%=pending.Id%>">
+                                    <img src="<%=pending.Image%>" class="img-add">
+                                    <strong class="name-contact"><%=pending.Name%></strong>
+                                    <button class="cancel" id="add-<%=pending.Id%>">Huy</button>
+                                </div>
+                                <%}%>
+                       <% })%>
+
+                    <% }%>  
+                    
+                 </div>
+            </div>
+
+          </div>
+     </div>
+
+</div>
+
+
+
+<%- include('./partials/footer') %>

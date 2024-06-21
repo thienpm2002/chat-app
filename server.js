@@ -4,9 +4,12 @@ const createError = require('http-errors');
 const path = require('path');
 const router = require('./routers/main.js');
 const cookieParser = require('cookie-parser');
-
-
+const { createServer } = require('node:http');
+const { Server } = require('socket.io');
+const  {verify} = require('jsonwebtoken');
 const app = express();
+const server = createServer(app);
+
 
 // middlewares
 app.use(express.static(path.join(__dirname, 'public')));
@@ -22,9 +25,7 @@ app.set('views',path.join(__dirname,'views'));
 // Routers
 router(app);
 
-app.get('/',(req,res)=>{
-      res.render('home');
-})
+
 
 // Set error handler
 app.use((req,res,next)=>{
@@ -38,10 +39,45 @@ app.use((err,req,res,next)=>{
        })
 })
 
+const io = new Server(server,{
+  path: "/api/socket.io",  // Đặt path của Socket.IO là /api/socket.io
+  cors: {
+    origin: 'http://localhost:3000',
+    credentials: true
+  },
+  transports: ['websocket', 'polling'],
+  allowEIO3: true
+});
 
+io.on('connection',(socket)=>{
+  let accessToken = socket.handshake.headers.cookie.split('accesstoken=')[1];
+  let payload = verify(accessToken, process.env.ACCESS_TOKEN);
+  const userId = payload.id;
+  socket.join(`${userId}`);
+  console.log(`user connect room ${userId}`);    
+  socket.on('send',(data)=>{
+        console.log(data);
+        io.to(`${data.fromId}`).emit('request',data);
+  })
+
+  socket.on('add-friend',(data)=>{
+        console.log(data);
+        io.to(`${data.toId}`).emit('accept',(data));
+  })
+
+  socket.on('reject-friend',(data)=>{
+    console.log(data);
+    io.to(`${data.toId}`).emit('reject',(data));
+  })
+
+  socket.on('disconnect',()=>{
+      console.log('user disconnect');
+  }) 
+
+});
 
 const port = process.env.PORT || 3000;
-app.listen(port, () => {
+server.listen(port, () => {
      console.log(`Server is running on port: ${port}`);
 })
 
