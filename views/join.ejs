@@ -1,0 +1,31 @@
+
+
+<%- include('./partials/page-header') %>
+
+     <div class="main-home">
+        
+        <div class="wrap-main">
+             <div class="create">
+                <h2>Create Team</h2>
+               <form class="create-team" action="/api/create-team" method="post">
+                   <input type="text" name="name" placeholder="Enter name">
+                   <button type="submit">Create team</button>
+               </form>
+             </div>
+             <div class="join">
+                  <h2>Join Team</h2>
+                  <form class="join-team" action="/api/join-team" method="post">
+                       <input type="text" name="code" placeholder="Enter code team">
+                       <button type="submit">Join team</button>
+                  </form>
+             </div>
+        </div>
+        
+     </div>
+
+
+
+
+
+
+<%- include('./partials/footer') %>

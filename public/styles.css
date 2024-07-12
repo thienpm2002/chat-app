@@ -5,10 +5,10 @@
 }
 
 
-body {
+html, body {
     width: 100%;
     height: 100%;
-    background-color: #80808036;
+    background-color: #8080800f;
 }
 
 
@@ -125,16 +125,16 @@ p {
 
 .home-conatiner {
      display: flex;
-     width: 100vw;
-     height:100vh;
+     width: 100%;
+     height:100%;
      position: relative;
      
 }
 
 
 .nav {
-    height: 100vh;
-    width: 10vw;
+    height: 100%;
+    width: 10%;
     display: flex;
     flex-direction: column;
     background-color: white;
@@ -175,7 +175,7 @@ p {
    cursor: pointer;
 }
 
-a {
+.nav-a {
     display: flex;
     width: 85%;
     height: 10%;
@@ -184,7 +184,7 @@ a {
     margin: 0 auto;
 }
 
-a p {
+.nav-a p {
     font-size: 16px;
     text-align: center;
     justify-self: center;
@@ -202,8 +202,8 @@ a p {
 /* ----------------------- Main-home --------------------------------- */
 
 .main-home{
-    width: 90vw;
-    height: 100vh;
+    width: 90%;
+    height: 100%;
     display: flex;
 }
 /* --------------------------------------- Contact ------------------------------- */
@@ -214,7 +214,7 @@ a p {
 
 .header-contact, .header-message {
     height: 10%;
-    border-bottom: 0.0101px solid black;
+    border-bottom: 1px solid #80808033;
     position: relative;
 }
 
@@ -223,6 +223,34 @@ a p {
      top: 30px;
      left: 30px;
      font-size: 24px;
+}
+.menu-search {
+    position: absolute;
+    height: 400px;
+    width: 280px;
+    background-color: #0158ef87;
+    top: 180px;
+    left:75px;
+    z-index: 1;
+    overflow: auto;
+    display: none;
+}
+.result {
+    position: relative;
+    background-color: white;
+    padding: 15px 10px 15px 10px;
+    height: 20%;
+    border-bottom: 1px solid #80808033;
+    cursor: pointer;
+}
+.result strong {
+    position: absolute;
+    top: 30px;
+    left: 70px;
+}
+.menu-search img {
+     height: 50px;
+     width: 50px;
 }
 .main-contact {
     height: 90%;
@@ -238,14 +266,14 @@ a p {
     align-items: center;
     justify-content: center;
 }
-.form-contact {
+.form-contact, .searchChat, .searchTeam {
     height:50% ;
     width: 80%;
     display: flex;
     align-items: center;
     justify-content: center;
 }
-.input-contact, .input-add {
+.input-contact, .input-add, .search-chat, .search-team {
      border-radius: 10px;
      height: 80%;
      width: 90%;
@@ -260,6 +288,34 @@ a p {
     
 }
 
+.avatar, .avatar-team {
+     position: relative;
+     pointer-events: none;
+}
+.on, .off {
+    height: 12px;
+    width: 12px;
+    border-radius: 100%;
+    border: none;
+    position: absolute;
+    right: 30px;
+    bottom: 3px;
+    pointer-events: none;
+}
+
+.on {
+    background-color: #0cd50c;
+}
+
+.off {
+    background-color: #ff0000;
+}
+.message-contact {
+     text-align: left;
+     color:gray;
+     pointer-events: none;
+}
+
 .img-contact {
     width: 70px;
     height: 70px;
@@ -267,12 +323,12 @@ a p {
     border-radius: 100%;
 }
 
-.content-contact {
+.content-contact, .list-chat, .list-team {
     height: 80%;
     overflow-y: auto;
 }
 
-.wrap {
+.wrap, .wrap-team {
     background-color: white;
     width: 90%;
     height: 20%;
@@ -287,11 +343,14 @@ a p {
 .chat-content {
     display: flex;
     flex-direction: column;
+    pointer-events: none;
 }
 
 .name-contact {
     font-size: 24px;
 }
+
+
 
 /* ------------------------------------------ chat ----------------------------*/
 
@@ -310,20 +369,60 @@ a p {
 .wrap-header strong {
     font-size: 24px;
     position: absolute;
-    top: 20px
+    top: 15px;
+    min-width: 100px;
 }
-.wrap-message {
+.friend {
+    font-size: 20px;
+    position: absolute;
+    top: 40px;
+    right: -55px;
+    color:#0cd50c;
+    
+}
+ .not-friend {
+    font-size: 20px;
+    position: absolute;
+    top: 45px;
+    right: -88px;
+    color: #ff0000;
+}
+.limit {
+    font-size: 20px;
+    position: absolute;
+    top: 45px;
+    right: -88px;
+    color: #0f47effc;
+}
+.code-team{
+    font-size: 20px;
+    position: absolute;
+    top: 45px;
+    right: -250px;
+    color: #0f47effc;
+}
+
+.wrap-message, .wrap-concat, .wrap-team-chat {
     height: 90%;
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
+    justify-content: flex-end;
 }
+.wrap-message, .wrap-team-chat {
+    display: none;
+}
+
 .message-content, .list-item {
     width: 100%;
     height: 90%;
     padding: 20px;
-    overflow-y: auto;
 }
+.message-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+
 
 .message {
     background-color: blue;
@@ -332,11 +431,27 @@ a p {
 }
 
 .chat-form {
+    width: 95%;
+    height: 5%;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    margin: 0 auto;
+}
+.chat-form-team {
     width: 100%;
     height: 5%;
     display: flex;
     justify-content: center;
     align-items: center;
+}
+#file {
+    display: none;
+}
+
+.chat-form button {
+    background: none;
+    border: none;
 }
 .input-chat {
     width: 80%;
@@ -354,32 +469,59 @@ a p {
 
 .message-r {
     background-color: blue;
-    border-radius: 5px;
+    border-radius: 20px;
     font-size: 24px;
     color: white;
     max-width: 40%;
-    align-self: flex-end;
     padding: 10px;
-    margin: 10px;
+    margin: 3px;
+    display: inline-block;
+    white-space: normal;
+    text-align: left;
 }
 
-.message-l {
-    background-color: pink;
-    border-radius: 5px;
+.message-l, .message-l-t {
+    background-color: #80808036;
+    border-radius: 20px;
     font-size: 24px;
-    color: white;
     max-width: 40%;
-    align-self: flex-start;
     padding: 10px;
-    margin: 10px;
+    margin: 3px;
+    display: inline-block;
+    white-space: normal;
+    text-align: left;
 }
-
+.message-img {
+    max-width: 300px;
+    max-height: 300px;
+    border-radius: 10px;
+}
 ul {
     list-style: none;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
+    width: 100%;
+    padding: 20px;
+    overflow-y: auto;
 }
+.message-item-r,.message-item-l, .message-item-g {
+    width: 100%;
+    min-height: 53px;
+}
+.message-item-r {
+    text-align: right;
+}
+.message-item-l, .message-item-g {
+    text-align: left;
+    position: relative;
+}
+
+.message-item-g {
+    margin-top: 30px;
+}
+
+/* .message-item-r a {
+    font-size: 20px;
+
+} */
 
 
 
@@ -563,4 +705,92 @@ label {
     transform: translate(0,0);
 }
 
+
+/* -------------------------------------------- Team ----------------------- */
+
+.name-member {
+  position: absolute;
+  font-size: 20px;
+  left: 50px;
+  top: -20px;
+  color: #808080;
+}
+
+.header-contact .add-team {
+    position: absolute;
+    top: 29px;
+    right: 30px;
+    border: none;
+    font-size: 20px;
+    background-color: #0cd50c1a;
+    color: #0eeb0e;
+    padding: 5px;
+    cursor: pointer;
+}
+.add-team a {
+    text-decoration: none;
+    margin-right: 5px;
+}
+
+.img-chat-team {
+    width: 30px;
+    height: 30px;
+    border-radius: 100%;
+    position: absolute;
+    top: 10px;
+}
+
+.message-l-t {
+    position: relative;
+    left: 40px;
+}
+/* -------------------------------------------- Join or create Team ----------------------- */
+
+.wrap-main {
+   height: 50%;
+   width: 50%;
+   margin: 100px auto;
+   display: flex;
+   justify-content: space-evenly;
+   align-items: center;
+}
+.create,.join {
+    height: 60%;
+    width: 45%;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    border-radius: 5px;
+}
+.create input, .join input {
+      height: 24px;
+      border: none;
+      padding: 5px;
+      font-size: 18px;
+      width: 70%;
+      background-color: rgb(109 188 251 / 36%);;
+}
+
+.create button, .join button {
+    border: none;
+    height: 24px;
+    padding: 5px;
+    color: white;
+    background-color: blue;
+    cursor: pointer;
+
+    
+}
+
+.create-team, .join-team {
+     display: flex;
+     align-items: center;
+     justify-content: space-evenly;
+}
+
+/* #file {
+    display: none;
+} */
 

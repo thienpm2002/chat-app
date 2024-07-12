@@ -1,0 +1,71 @@
+<%- include('./partials/page-header') %>
+
+     <div class="main-home">
+        
+          <div class="contact">
+              <div class="header-contact">
+                <strong>Teams</strong> 
+                <button class="add-team"><a href="/api/join-team">Join or create team</a><i class="fa fa-plus" style="font-size:18px; color: #0eeb0e"></i></button>
+              </div>
+              <div class="main-contact">
+                    <div class="search">
+                        <form class='searchTeam'>
+                            <input type="text" placeholder="Enter team" class="search-team">
+                            <i class="fa fa-search" style="font-size:16px"></i>
+                        </form>
+                    </div>
+                    <div class="list-team">
+                        <% if(teams.length > 0){%>
+                            <% teams.forEach((team)=>{%>
+                             <div class="wrap-team" id="team-<%=team.team_id%>">
+                                 <div class="avatar-team">
+                                     <img src="<%=team.team_img%>" class="img-contact">
+                                 </div>
+                                 <div class="chat-content">
+                                      <strong class="name-contact"><%=team.team_name%></strong>
+                                      <%if(team.sender_id){%>
+                                        <%if(user.Id !== team.sender_id){%>
+                                            <p class="message-contact"><%=team.sender_name%>: <%=team.content%></p>
+                                        <%}else{%>
+                                            <p class="message-contact">You: <%=team.content%></p>
+                                        <%}%>
+                                     <%}else{%>
+                                        <p class="message-contact">No one has texted yet</p>
+                                     <%}%>   
+                                 </div>
+                            </div>
+ 
+                             <%})%>
+                             
+                         <%}%>
+                     
+                    </div>
+              </div>
+          </div>
+
+
+          <div class="chat">
+
+            <div class="header-message">
+                
+            </div>
+
+            <div class="wrap-team-chat">
+                <div class="message-content">
+                    <ul>
+                        
+                    </ul>
+                </div> 
+                 <form class="chat-form-team">
+                     <input type="text" class="input-chat" placeholder="Type message" name="message">
+                     <i class="fa fa-send" style="font-size:24px; color: blue"></i>
+                 </form>
+            </div>
+
+          </div>
+     </div>
+
+
+
+
+<%- include('./partials/footer') %>

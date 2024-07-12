@@ -43,7 +43,7 @@ const loginPage = (req,res) =>{
 const loginController = async (req,res) => {
 
     try {
-
+        const status = 'on';
         const {email,password} = req.body;
 
         const {error} = userLoginValidate(req.body);
@@ -59,7 +59,7 @@ const loginController = async (req,res) => {
             const accessToken = createAccessToken(user.Id);
             const refreshToken = createRefreshToken(user.Id);
             
-            await pool.query('UPDATE users SET Refreshtoken = ? WHERE Id = ?', [refreshToken, user.Id]);
+            await pool.query('UPDATE users SET Refreshtoken = ?, Status = ? WHERE Id = ?', [refreshToken,status, user.Id]);
 
             sendRefreshToken(res,refreshToken);
             sendAccessToken(res,accessToken);
@@ -77,6 +77,9 @@ const loginController = async (req,res) => {
 
 
 const logoutController = async (req,res)=>{
+    const status = 'off';
+    const id = req.userId;
+    await pool.query('UPDATE users SET Status = ? WHERE Id = ?', [status, id]);
     res.clearCookie('refreshtoken',{ path: '/api' });
     res.clearCookie('accesstoken',{ path: '/api' });
     return res.send({
@@ -86,7 +89,7 @@ const logoutController = async (req,res)=>{
 
 const updateUser = async (req,res)=>{
     try {
-        const img = `/img/${req.file.filename}`;
+        const img = `/img/uploads/${req.file.filename}`;
         console.log(img)
         const {name} = req.body;
         console.log(name);
@@ -123,6 +126,34 @@ const searchUser = async (req,res) => {
     }
 }
 
+const offEvent = async (req,res)=>{
+    try {
+       
+        const {userId,status} = req.body;
+        await pool.query('UPDATE users SET Status = ? WHERE Id = ?', [status, userId]);
+        return res.send({
+            message:'User off'
+        })
+    } catch (error) {
+        return res.status(500).json({message: `${error.message}`});
+    }
+    
+}
+
+const onEvent = async (req,res)=>{
+    try {
+      
+        const {userId,status} = req.body;
+        await pool.query('UPDATE users SET Status = ? WHERE Id = ?', [status, userId]);
+        return res.send({
+            message:'User on'
+        })
+    } catch (error) {
+        return res.status(500).json({message: `${error.message}`});
+    }
+    
+}
+
 module.exports = {
     registerPage,
     registerController,
@@ -130,5 +161,7 @@ module.exports = {
     loginController,
     logoutController,
     updateUser,
-    searchUser
+    searchUser,
+    offEvent,
+    onEvent
 }

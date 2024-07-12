@@ -7,6 +7,9 @@ const cookieParser = require('cookie-parser');
 const { createServer } = require('node:http');
 const { Server } = require('socket.io');
 const  {verify} = require('jsonwebtoken');
+const fetch = require('node-fetch');
+
+
 const app = express();
 const server = createServer(app);
 
@@ -21,6 +24,8 @@ app.use(cookieParser());
 // Set template
 app.set('view engine','ejs');
 app.set('views',path.join(__dirname,'views'));
+
+
 
 // Routers
 router(app);
@@ -55,6 +60,10 @@ io.on('connection',(socket)=>{
   const userId = payload.id;
   socket.join(`${userId}`);
   console.log(`user connect room ${userId}`);    
+
+  io.emit('on',{userId:userId, status: 'on'});       // Sự kiện on
+
+  // ------------------------------ Kết bạn -----------------------
   socket.on('send',(data)=>{
         console.log(data);
         io.to(`${data.fromId}`).emit('request',data);
@@ -70,7 +79,35 @@ io.on('connection',(socket)=>{
     io.to(`${data.toId}`).emit('reject',(data));
   })
 
-  socket.on('disconnect',()=>{
+  // ------------------------------ Chat -----------------------
+
+
+  socket.on('send-message',(data)=>{
+       io.to(`${data.receiver.Id}`).emit('receiver-message',data);
+  })
+
+  // -------------------------------- Team ------------
+
+   socket.on('join',(teamId)=>{
+       socket.join(`team-${teamId}`);
+       console.log(`user join ${teamId}`);
+   })
+
+   socket.on('send-team',(data)=>{
+        socket.broadcast.to(`team-${data.sender.team_id}`).emit('receiver-team',data);
+   })
+
+
+
+  socket.on('disconnect',async ()=>{
+      await fetch('http://localhost:3000/off',{
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({userId:userId,status: 'off'})
+    })
+      io.emit('off',{userId:userId});   // Sự kiện off
       console.log('user disconnect');
   }) 
 

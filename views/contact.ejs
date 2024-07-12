@@ -10,7 +10,7 @@
               <div class="header-contact"><strong>List Friends</strong></div>
               <div class="main-contact">
                     <div class="search">
-                        <form action=""class='form-contact'>
+                        <form class='form-contact'>
                             <input type="text" placeholder="Search user" class="input-add">
                             <i class="fa fa-search" style="font-size:16px"></i>
                         </form>
@@ -18,21 +18,16 @@
                     <div class="content-contact">
 
                         
-                         <%if(friends.length === 0){%>
-                            <div class="wrap-appect">
-                                <div class="accept-content">
-                                     <strong class="name-contact">Not friend</strong>
+                         <%if(friends.length > 0){
+                            friends.forEach((friend)=>{%>
+                                <div class="wrap-appect">
+                                    <div class="accept-content">
+                                        <img src="<%=friend.Image%>" class="img-contact">
+                                        <strong class="name-contact"><%=friend.Name%></strong>
+                                    </div>
                                 </div>
-                            </div>
+                            <% })%>
                         <%}%>
-                         <%friends.forEach((friend)=>{%>
-                            <div class="wrap-appect">
-                                <div class="accept-content">
-                                     <img src="<%=friend.Image%>" class="img-contact">
-                                     <strong class="name-contact"><%=friend.Name%></strong>
-                                </div>
-                            </div>
-                        <% })%>
                          
         
 
@@ -47,7 +42,7 @@
                     <h3 class="header-list-friend">People you may know</h3>
             </div>
 
-            <div class="wrap-message">
+            <div class="wrap-concat">
                  <div class="list-item">
                     <%if(pendings.length > 0 && typeof pendings !== 'undefined'){%>
 
@@ -76,7 +71,7 @@
           </div>
      </div>
 
-</div>
+
 
 
 
